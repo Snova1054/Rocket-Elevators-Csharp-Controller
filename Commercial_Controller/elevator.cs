@@ -87,19 +87,6 @@ namespace Commercial_Controller
             {
                 direction = "down";
             }   
-        }
-
-        //public int[] addFloorRequestedToList(int floor, int[] floorRequestsList)
-        //{
-        //    int[] newFloorRequestsList = new int[floorRequestsList.Length + 1];
-        //    for (int i = 0; i < floorRequestsList.Length; i++)
-        //    {
-        //        newFloorRequestsList[i] = floorRequestsList[i];
-        //    }
-        //    newFloorRequestsList[newFloorRequestsList.Length] = floor;
-
-        //    return newFloorRequestsList;
-        //}
-        
+        }        
     }
 }
