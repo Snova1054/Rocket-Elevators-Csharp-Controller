@@ -7,10 +7,10 @@ namespace Commercial_Controller
         public int ID = 1;
         public string status;
 
-        public Door(int ID, string status)
+        public Door(int _ID, string _status)
         {
-            this.ID = ID;
-            this.status = status;
+            this.ID = _ID;
+            this.status = _status;
         }
     }
 }

@@ -71,19 +71,19 @@ namespace Commercial_Controller
             door.status = "closed";
         }
 
-        public void addNewRequest(int requestedFloor)
+        public void addNewRequest(int _requestedFloor)
         {
-            completedRequestsList.Add(requestedFloor);
-            if (floorRequestsList.Contains(requestedFloor) == false)
+            completedRequestsList.Add(_requestedFloor);
+            if (floorRequestsList.Contains(_requestedFloor) == false)
             {
-                floorRequestsList.Add(requestedFloor);
+                floorRequestsList.Add(_requestedFloor);
             }
 
-            if (currentFloor < requestedFloor)
+            if (currentFloor < _requestedFloor)
             {
                 direction = "up";
             }
-            else if (currentFloor > requestedFloor)
+            else if (currentFloor > _requestedFloor)
             {
                 direction = "down";
             }   
