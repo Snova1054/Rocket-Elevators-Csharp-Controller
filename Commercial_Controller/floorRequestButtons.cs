@@ -8,9 +8,9 @@ namespace Commercial_Controller
         public int floor;
         public string direction;
 
-       public FloorRequestButton(int _floor, string _direction)
+       public FloorRequestButton(int _ID, int _floor, string _direction)
         {
-            this.ID = 1;
+            this.ID = _ID;
             this.status = "off";
             this.floor = _floor;
             this.direction = _direction;

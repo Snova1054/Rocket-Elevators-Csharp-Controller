@@ -9,7 +9,7 @@ namespace Commercial_Controller
         public string status;
         public List<int> servedFloors;
         public bool isBasement;
-        public Elevator[] elevatorsList;
+        public List<Elevator> elevatorsList;
         public List<CallButton> callButtonsList;
         public Column(string _ID, int _amountOfElevators, List<int> _servedFloors, bool _isBasement)
         {
@@ -17,8 +17,11 @@ namespace Commercial_Controller
             this.status = "online";
             this.servedFloors = _servedFloors;
             this.isBasement = _isBasement;
-            this.elevatorsList = new Elevator[_amountOfElevators];
+            this.elevatorsList = new List<Elevator>();
             this.callButtonsList = new List<CallButton>();
+
+            createElevators(servedFloors.Count, elevatorsList.Count);
+            createCallButtons(servedFloors.Count, isBasement);
         }
 
         public void createCallButtons(int _amountOfFloors, bool _isBasement)
@@ -52,13 +55,13 @@ namespace Commercial_Controller
             for (int i = 0; i < _amountOfElevators; i++)
             {
                 Elevator elevator = new Elevator(Program.elevatorID.ToString());
-                elevatorsList[i] = elevator;
+                elevatorsList.Add(elevator);
                 Program.elevatorID++;
             }
         }
 
         //Simulate when a user press a button on a floor to go back to the first floor
-        public void requestElevator(int _userPosition, string _direction)
+        public Elevator requestElevator(int _userPosition, string _direction)
         {
             Elevator bestElevator = findElevator(_userPosition, _direction);
             bestElevator.addNewRequest(_userPosition);
@@ -66,6 +69,8 @@ namespace Commercial_Controller
 
             bestElevator.addNewRequest(1);
             bestElevator.move();
+
+            return bestElevator;
         }
 
         public Elevator findElevator(int _requestedFloor, string _requestedDirection)
