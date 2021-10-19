@@ -12,9 +12,9 @@ namespace Commercial_Controller
         public List<int> floorRequestsList;
         public List<int> completedRequestsList;
 
-        public Elevator(string _elevatorID)
+        public Elevator(char _elevatorID)
         {
-            this.ID = _elevatorID;
+            this.ID = _elevatorID.ToString();
             this.status = "idle";
             this.currentFloor = 1;
             this.direction = "null";

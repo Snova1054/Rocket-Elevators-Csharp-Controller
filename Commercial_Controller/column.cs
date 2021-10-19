@@ -5,22 +5,26 @@ namespace Commercial_Controller
 {   
     public class Column
     {
+        public int callButtonID = 1;
+
+        public char elevatorID = 'A';
+
         public string ID;
         public string status;
         public List<int> servedFloors;
         public bool isBasement;
         public List<Elevator> elevatorsList;
         public List<CallButton> callButtonsList;
-        public Column(string _ID, int _amountOfElevators, List<int> _servedFloors, bool _isBasement)
+        public Column(char _ID, int _amountOfElevators, List<int> _servedFloors, bool _isBasement)
         {
-            this.ID = _ID;
+            this.ID = _ID.ToString();
             this.status = "online";
             this.servedFloors = _servedFloors;
             this.isBasement = _isBasement;
             this.elevatorsList = new List<Elevator>();
             this.callButtonsList = new List<CallButton>();
 
-            createElevators(servedFloors.Count, elevatorsList.Count);
+            createElevators(servedFloors.Count, _amountOfElevators);
             createCallButtons(servedFloors.Count, isBasement);
         }
 
@@ -34,7 +38,7 @@ namespace Commercial_Controller
                     CallButton callButton = new CallButton(1, buttonFloor, "up");
                     callButtonsList.Add(callButton);
                     buttonFloor--;
-                    Program.callButtonID++;
+                    callButtonID++;
                 }
             }
             else
@@ -45,7 +49,7 @@ namespace Commercial_Controller
                     CallButton callButton = new CallButton(1, buttonFloor, "down");
                     callButtonsList.Add(callButton);
                     buttonFloor++;
-                    Program.callButtonID++;
+                    callButtonID++;
                 }
             }
         }
@@ -54,9 +58,10 @@ namespace Commercial_Controller
         {
             for (int i = 0; i < _amountOfElevators; i++)
             {
-                Elevator elevator = new Elevator(Program.elevatorID.ToString());
+                Elevator elevator = new Elevator(elevatorID);
                 elevatorsList.Add(elevator);
-                Program.elevatorID++;
+                elevatorID++;
+                Console.WriteLine("Here's Elevator {0}",elevator.ID);
             }
         }
 
@@ -95,7 +100,7 @@ namespace Commercial_Controller
                     {
                         (bestElevator, bestScore, referenceGap) = checkIfElevatorIsBetter(3, elevator, bestScore, referenceGap, bestElevator, _requestedFloor);
                     }
-                    else if (elevator.currentFloor < 1 && elevator.direction == "down")
+                    else if (elevator.currentFloor > 1 && elevator.direction == "down")
                     {
                         (bestElevator, bestScore, referenceGap) = checkIfElevatorIsBetter(3, elevator, bestScore, referenceGap, bestElevator, _requestedFloor);
                     }
@@ -121,17 +126,17 @@ namespace Commercial_Controller
                     {
                         (bestElevator, bestScore, referenceGap) = checkIfElevatorIsBetter(2, elevator, bestScore, referenceGap, bestElevator, _requestedFloor);
                     }
-                    else if (elevator.currentFloor < _requestedFloor && elevator.direction == "down" && _requestedDirection == "down")
+                    else if (elevator.currentFloor > _requestedFloor && elevator.direction == "down" && _requestedDirection == "down")
                     {
                         (bestElevator, bestScore, referenceGap) = checkIfElevatorIsBetter(2, elevator, bestScore, referenceGap, bestElevator, _requestedFloor);
                     }
                     else if (elevator.status == "idle")
                     {
-                        (bestElevator, bestScore, referenceGap) = checkIfElevatorIsBetter(3, elevator, bestScore, referenceGap, bestElevator, _requestedFloor);
+                        (bestElevator, bestScore, referenceGap) = checkIfElevatorIsBetter(4, elevator, bestScore, referenceGap, bestElevator, _requestedFloor);
                     }
                     else
                     {
-                        (bestElevator, bestScore, referenceGap) = checkIfElevatorIsBetter(4, elevator, bestScore, referenceGap, bestElevator, _requestedFloor);
+                        (bestElevator, bestScore, referenceGap) = checkIfElevatorIsBetter(5, elevator, bestScore, referenceGap, bestElevator, _requestedFloor);
                     }
                 }
             }
