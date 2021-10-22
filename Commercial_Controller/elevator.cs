@@ -47,6 +47,7 @@ namespace Commercial_Controller
                     sortFloorList();
                     while (currentFloor > destination)
                     {
+                        Console.WriteLine("Elevator {0}'s is on the floor #{1}", ID, currentFloor);
                         currentFloor--;
                     }
                 }
