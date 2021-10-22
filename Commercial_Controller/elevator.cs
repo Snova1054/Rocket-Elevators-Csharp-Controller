@@ -51,7 +51,7 @@ namespace Commercial_Controller
                         currentFloor--;
                     }
                 }
-                Console.WriteLine("Elevator {0}'s has arrived at the floor #{1}", ID, currentFloor);
+                Console.WriteLine("Elevator {0} has arrived at the floor #{1}", ID, currentFloor);
                 status = "stopped";
                 operateDoors();
                 floorRequestsList.RemoveAt(0);
@@ -74,7 +74,7 @@ namespace Commercial_Controller
             Console.WriteLine("Elevator's doors have opened");
             //Wait 5 secondes
             door.status = "closed";
-            Console.WriteLine("Elevator's doors have closed");
+            Console.WriteLine("Elevator's doors have closed\n");
         }
 
         public void addNewRequest(int _requestedFloor)

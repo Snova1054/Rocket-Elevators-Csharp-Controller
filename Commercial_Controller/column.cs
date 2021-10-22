@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace Commercial_Controller
 {
+    
+    //Declares each Column
     public class Column
     {
         public int callButtonID = 1;
@@ -15,6 +17,8 @@ namespace Commercial_Controller
         public bool isBasement;
         public List<Elevator> elevatorsList;
         public List<CallButton> callButtonsList;
+
+        //Function used to create new Columns with the desired properties
         public Column(char _ID, int _amountOfElevators, List<int> _servedFloors, bool _isBasement)
         {
             this.ID = _ID.ToString();
@@ -28,6 +32,7 @@ namespace Commercial_Controller
             createCallButtons(servedFloors.Count, isBasement);
         }
 
+        //Method used by the Column to create Call Buttons
         public void createCallButtons(int _amountOfFloors, bool _isBasement)
         {
             if (_isBasement)
@@ -54,6 +59,7 @@ namespace Commercial_Controller
             }
         }
 
+        //Method used to create Elevators
         public void createElevators(int _amountOfFloors, int _amountOfElevators)
         {
             for (int i = 0; i < _amountOfElevators; i++)
@@ -79,6 +85,7 @@ namespace Commercial_Controller
             return bestElevator;
         }
 
+        //Method used to find the best Elevator possible
         public Elevator findElevator(int _requestedFloor, string _requestedDirection)
         {
             Elevator bestElevator = elevatorsList[0];
@@ -144,6 +151,7 @@ namespace Commercial_Controller
             return bestElevator;
         }
 
+        //Method used to compared a new Elevator's information with the bestElevator's
         public (Elevator, int, int) checkIfElevatorIsBetter(int _scoreToCheck, Elevator _newElevator, int _bestScore, int _referenceGap, Elevator _bestElevator, int _floor)
         {
             if (_scoreToCheck < _bestScore)

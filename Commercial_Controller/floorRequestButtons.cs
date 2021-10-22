@@ -8,6 +8,8 @@ namespace Commercial_Controller
         public int floor;
         public string direction;
 
+
+        //Function used to create new NewFloorRequestButtons with the desired properties
        public FloorRequestButton(int _ID, int _floor, string _direction)
         {
             this.ID = _ID;

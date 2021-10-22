@@ -8,6 +8,7 @@ namespace Commercial_Controller
         public int floor;
         public string direction;
 
+        //Function used to create new CallButtons with the desired properties
         public CallButton(int _id, int _floor, string _direction)
         {
             this.ID = _id;

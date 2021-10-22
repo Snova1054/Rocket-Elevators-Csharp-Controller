@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace Commercial_Controller
 {
+
+//Declares each Battery
     public class Battery
     {
         public char columnID = 'A';
@@ -12,6 +14,7 @@ namespace Commercial_Controller
         public List<Column> columnsList;
         public List<FloorRequestButton> floorRequestButtonsList;
 
+        //Function used to create new Batteries with the desired properties
         public Battery(int _ID, int _amountOfColumns, int _amountOfFloors, int _amountOfBasements, int _amountOfElevatorPerColumn)
         {
             this.ID = _ID;
@@ -30,6 +33,7 @@ namespace Commercial_Controller
             createColumns(_amountOfColumns, _amountOfFloors, _amountOfElevatorPerColumn);
         }
 
+        //Method used by the Battery to create a basement Column
         public void createBasementColumn(int _amountOfBasement, int _amountOfElevatorPerColumn)
         {
             List<int> servedFloors = new List<int>();
@@ -45,7 +49,7 @@ namespace Commercial_Controller
             columnID++;
         }
 
-
+        //Method used to create Columns
         public void createColumns(double _amountOfColumns, double _amountOfFloors, int _amountOfElevatorPerColumn)
         {
             double amountOfFloorsPerColumn = Math.Ceiling(_amountOfFloors / _amountOfColumns);
@@ -69,6 +73,7 @@ namespace Commercial_Controller
             }
         }
 
+        //Method used to create FloorRequestButtons
         public void createFloorRequestButtons(double _amountOfFloors)
         {
             int buttonFloor = 1;
@@ -81,6 +86,7 @@ namespace Commercial_Controller
             }
         }
 
+        //Method used to create basement FloorRequestButtons
         public void createBasementFloorRequestButtons(int _amountOfBasements)
         {
             int buttonFloor = -1;
@@ -93,6 +99,7 @@ namespace Commercial_Controller
             }
         }
 
+        //Method used to assign the best Elevator according to the best Column from the user's inputs
         public (Column, Elevator) assignElevator(int _requestedFloor, string _direction)
         {
             Console.WriteLine("An elevator has been requested from the lobby to the floor #{0}\n", _requestedFloor);
