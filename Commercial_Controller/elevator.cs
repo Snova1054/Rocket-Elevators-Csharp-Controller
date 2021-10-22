@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Commercial_Controller
@@ -21,7 +22,7 @@ namespace Commercial_Controller
             this.door = new Door(1, "off");
             this.floorRequestsList = new List<int>();
             this.completedRequestsList = new List<int>();
-            
+
         }
         public void move()
         {
@@ -36,7 +37,8 @@ namespace Commercial_Controller
                     sortFloorList();
                     while (currentFloor < destination)
                     {
-                         currentFloor++;
+                        Console.WriteLine("Elevator {0}'s is on the floor #{1}", ID, currentFloor);
+                        currentFloor++;
                     }
                 }
                 else if (currentFloor > destination)
@@ -48,6 +50,7 @@ namespace Commercial_Controller
                         currentFloor--;
                     }
                 }
+                Console.WriteLine("Elevator {0}'s has arrived at the floor #{1}", ID, currentFloor);
                 status = "stopped";
                 operateDoors();
                 floorRequestsList.RemoveAt(0);
@@ -67,8 +70,10 @@ namespace Commercial_Controller
         public void operateDoors()
         {
             door.status = "opened";
+            Console.WriteLine("Elevator's doors have opened");
             //Wait 5 secondes
             door.status = "closed";
+            Console.WriteLine("Elevator's doors have closed");
         }
 
         public void addNewRequest(int _requestedFloor)
@@ -86,7 +91,7 @@ namespace Commercial_Controller
             else if (currentFloor > _requestedFloor)
             {
                 direction = "down";
-            }   
-        }        
+            }
+        }
     }
 }

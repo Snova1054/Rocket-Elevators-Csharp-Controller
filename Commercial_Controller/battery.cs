@@ -40,7 +40,6 @@ namespace Commercial_Controller
                 floor--;
             }
 
-            Console.WriteLine("Here's Basement Column {0}", columnID);
             Column basementColumn = new Column(columnID, _amountOfElevatorPerColumn, servedFloors, true);
             columnsList.Add(basementColumn);
             columnID++;
@@ -49,13 +48,13 @@ namespace Commercial_Controller
 
         public void createColumns(double _amountOfColumns, double _amountOfFloors, int _amountOfElevatorPerColumn)
         {
-            double amountOfFloorsPerColumn = Math.Ceiling(_amountOfFloors/_amountOfColumns);
+            double amountOfFloorsPerColumn = Math.Ceiling(_amountOfFloors / _amountOfColumns);
             int floor = 1;
 
             for (int i = 0; i < _amountOfColumns; i++)
             {
                 List<int> servedFloors = new List<int>();
-                
+
                 for (int j = 0; j < amountOfFloorsPerColumn; j++)
                 {
                     if (floor <= _amountOfFloors)
@@ -64,8 +63,7 @@ namespace Commercial_Controller
                         floor++;
                     }
                 }
-                Console.WriteLine("=========Here's Column {0}", columnID);
-                Column column = new Column(columnID,_amountOfElevatorPerColumn, servedFloors, false);
+                Column column = new Column(columnID, _amountOfElevatorPerColumn, servedFloors, false);
                 columnsList.Add(column);
                 columnID++;
             }
@@ -97,8 +95,11 @@ namespace Commercial_Controller
 
         public (Column, Elevator) assignElevator(int _requestedFloor, string _direction)
         {
+            Console.WriteLine("An elevator has been requested from the lobby to the floor #{0}\n", _requestedFloor);
+
             Column bestColumn = findBestColumn(_requestedFloor);
             Elevator bestElevator = bestColumn.findElevator(1, _direction);
+            Console.WriteLine("Elevator {0} on the floor #{1} has been selected as the best elevator\n", bestElevator.ID, bestElevator.currentFloor);
             bestElevator.addNewRequest(1);
             bestElevator.move();
 

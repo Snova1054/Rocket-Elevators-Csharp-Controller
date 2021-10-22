@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 namespace Commercial_Controller
-{   
+{
     public class Column
     {
         public int callButtonID = 1;
@@ -61,14 +61,15 @@ namespace Commercial_Controller
                 Elevator elevator = new Elevator(elevatorID);
                 elevatorsList.Add(elevator);
                 elevatorID++;
-                Console.WriteLine("Here's Elevator {0}",elevator.ID);
             }
         }
 
         //Simulate when a user press a button on a floor to go back to the first floor
         public Elevator requestElevator(int _userPosition, string _direction)
         {
+            Console.WriteLine("An elevator has been requested for the floor #{0} to go {1}\n", _userPosition, _direction);
             Elevator bestElevator = findElevator(_userPosition, _direction);
+            Console.WriteLine("Elevator {0} on the floor #{1} has been selected as the best elevator\n", bestElevator.ID, bestElevator.currentFloor);
             bestElevator.addNewRequest(_userPosition);
             bestElevator.move();
 
@@ -142,7 +143,7 @@ namespace Commercial_Controller
             }
             return bestElevator;
         }
-        
+
         public (Elevator, int, int) checkIfElevatorIsBetter(int _scoreToCheck, Elevator _newElevator, int _bestScore, int _referenceGap, Elevator _bestElevator, int _floor)
         {
             if (_scoreToCheck < _bestScore)
@@ -156,9 +157,9 @@ namespace Commercial_Controller
                 int gap = Math.Abs(_newElevator.currentFloor - _floor);
                 if (_referenceGap > gap)
                     _bestElevator = _newElevator;
-                    _referenceGap = gap;
+                _referenceGap = gap;
                 {
-                    
+
                 }
             }
             return (_bestElevator, _bestScore, _referenceGap);

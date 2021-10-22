@@ -6,7 +6,8 @@ namespace Commercial_Controller
     {
         Battery battery = new Battery(1, 4, 60, 6, 5);
 
-        public Column moveAllElevators(Column column) {
+        public Column moveAllElevators(Column column)
+        {
             for (int i = 0; i < column.elevatorsList.Count; i++)
             {
                 while (column.elevatorsList[i].floorRequestsList.Count != 0)
@@ -147,7 +148,8 @@ namespace Commercial_Controller
         }
         public void run(int scenarioNumber)
         {
-            switch(scenarioNumber) {
+            switch (scenarioNumber)
+            {
                 case 1:
                     scenario1();
                     break;
@@ -163,7 +165,7 @@ namespace Commercial_Controller
                 default:
                     Console.WriteLine("Invalid scenario number");
                     break;
-            }            
+            }
         }
     }
 
