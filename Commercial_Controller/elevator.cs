@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Commercial_Controller
 {
+    //Declares each Elevator
     public class Elevator
     {
         public string ID;
@@ -13,6 +14,7 @@ namespace Commercial_Controller
         public List<int> floorRequestsList;
         public List<int> completedRequestsList;
 
+        //Function used to create new Elevators with the desired properties
         public Elevator(char _elevatorID)
         {
             this.ID = _elevatorID.ToString();
@@ -24,6 +26,7 @@ namespace Commercial_Controller
             this.completedRequestsList = new List<int>();
 
         }
+        //Method used by the Column or the Battery to move the Elevator
         public void move()
         {
 
@@ -59,6 +62,7 @@ namespace Commercial_Controller
             status = "idle";
         }
 
+        //Method used to sort the floor requests list
         public void sortFloorList()
         {
             floorRequestsList.Sort();
@@ -68,6 +72,7 @@ namespace Commercial_Controller
             }
         }
 
+        //Method used by the Elevator to operate its Doors
         public void operateDoors()
         {
             door.status = "opened";
@@ -77,6 +82,7 @@ namespace Commercial_Controller
             Console.WriteLine("Elevator's doors have closed\n");
         }
 
+        //Method used to add new floor requests
         public void addNewRequest(int _requestedFloor)
         {
             completedRequestsList.Add(_requestedFloor);
