@@ -9,6 +9,5 @@ namespace Commercial_Controller
             Scenarios scenarios = new Scenarios();
             scenarios.run(scenarioNumber);
         }
-
     }
 }
